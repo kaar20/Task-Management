@@ -18,11 +18,11 @@ RETURNING id
 
 type CreateTaskParams struct {
 	Title       string
-	Description string
-	Status      string
-	Priority    string
+	Description sql.NullString
+	Status      sql.NullString
+	Priority    sql.NullString
 	DueDate     sql.NullTime
-	UserID      int32
+	UserID      sql.NullInt32
 }
 
 func (q *Queries) CreateTask(ctx context.Context, arg CreateTaskParams) error {
@@ -77,7 +77,7 @@ WHERE user_id = $1
 `
 
 // WHERE id = $1;
-func (q *Queries) GetTasksByUserID(ctx context.Context, userID int32) ([]Task, error) {
+func (q *Queries) GetTasksByUserID(ctx context.Context, userID sql.NullInt32) ([]Task, error) {
 	rows, err := q.db.QueryContext(ctx, getTasksByUserID, userID)
 	if err != nil {
 		return nil, err
@@ -152,11 +152,11 @@ RETURNING id
 
 type UpdateTaskParams struct {
 	Title       string
-	Description string
-	Status      string
-	Priority    string
+	Description sql.NullString
+	Status      sql.NullString
+	Priority    sql.NullString
 	DueDate     sql.NullTime
-	UserID      int32
+	UserID      sql.NullInt32
 	ID          int32
 }
 

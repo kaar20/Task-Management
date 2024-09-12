@@ -16,11 +16,11 @@ type Category struct {
 type Task struct {
 	ID          int32
 	Title       string
-	Description string
-	Status      string
-	Priority    string
+	Description sql.NullString
+	Status      sql.NullString
+	Priority    sql.NullString
 	DueDate     sql.NullTime
-	UserID      int32
+	UserID      sql.NullInt32
 }
 
 type TaskCategory struct {

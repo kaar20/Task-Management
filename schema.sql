@@ -8,11 +8,11 @@ CREATE TABLE users (
 CREATE TABLE tasks (
   id SERIAL PRIMARY KEY,
   title VARCHAR(100) NOT NULL,
-  description TEXT NOT NULL,
-  status VARCHAR(50) DEFAULT 'To-Do' NOT NULL,
-  priority VARCHAR(50) NOT NULL, 
+  description TEXT,
+  status VARCHAR(50) DEFAULT 'To-Do',
+  priority VARCHAR(50),
   due_date TIMESTAMP,
-  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE SET NULL
+  user_id INTEGER REFERENCES users(id) ON DELETE SET NULL
 );
 
 CREATE TABLE categories (
